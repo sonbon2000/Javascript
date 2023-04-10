@@ -11,11 +11,7 @@ const grid = document.querySelector("#grid");
 const getDinoData = async () => {
   const dinoJson = await fetch("./dino.json");
   const data = await dinoJson.json();
-  const newDinoArr = data.Dinos.map((dino) => {
-    let { species, weight, height, diet, where, when, fact } = dino;
-    return new Dino(species, weight, height, diet, where, when, fact);
-  });
-  generateTile(newDinoArr);
+  generateTile(data.Dinos);
 };
 
 // Create Dino Constructor
@@ -150,7 +146,7 @@ const generateTile = (dinosArr) => {
 };
 
 function shuffle(a) {
-  var j, x, i;
+  let j, x, i;
   for (i = a.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1));
     x = a[i];
